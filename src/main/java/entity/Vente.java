@@ -1,4 +1,4 @@
 package main.java.entity;
 
-public class Vente {
+public interface Vente {
 }
