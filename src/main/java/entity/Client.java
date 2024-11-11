@@ -1,4 +1,4 @@
 package main.java.entity;
 
-public interface Client {
+public class Client implements Entite {
 }

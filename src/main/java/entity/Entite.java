@@ -1,4 +1,4 @@
 package main.java.entity;
 
-public interface Gérant {
+public interface Entite {
 }

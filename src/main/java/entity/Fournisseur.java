@@ -1,4 +1,4 @@
 package main.java.entity;
 
-public interface Fournisseur {
+public class Fournisseur implements Entite {
 }
