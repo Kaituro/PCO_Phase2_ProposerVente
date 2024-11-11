@@ -23,5 +23,5 @@ Ce projet est une simulation d’un système de gestion de ventes pour le magasi
 - Java 22 ou supérieur doit être installé.
 
 ## Auteurs
-- Josian RIVIÈRE
+- Josian RIVIERE
 - Thomas ROUX

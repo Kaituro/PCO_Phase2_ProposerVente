@@ -28,7 +28,7 @@ public class Main {
 
                 // Proposer et valider la vente
                 fournisseur.proposerVente(vente);
-                gerant.validerVerente(vente);
+                gerant.validerVente(vente);
 
                 if (vente.getStatut().equals("Validée")) {
                         // Création de la notification et envoi
