@@ -1,4 +1,4 @@
-package main.java.Metier;
+package main.java.metier;
 
 public enum Activite {
     SURFING,

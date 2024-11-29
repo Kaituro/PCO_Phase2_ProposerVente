@@ -1,4 +1,4 @@
-package main.java.Metier;
+package main.java.metier;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +12,7 @@ public class Vente {
     private List<Activite> activites;
     private List<LigneDeVente> produits = new ArrayList<>();
     private String statut;
+
 
     public Vente(String nom, Date dateDebut, Date dateFin, String description, List<Activite> activites) {
         this.nom = nom;
@@ -38,8 +39,5 @@ public class Vente {
         return statut;
     }
 
-    public void notifierClientsPrivilegies(ServeurMail serveurMail) throws IllegalStateException {
-        throw new IllegalStateException("A implémenter");
-    }
 }
     
