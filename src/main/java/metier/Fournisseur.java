@@ -12,6 +12,7 @@ public class Fournisseur {
     private String email;
     private String telephone;
     private String motDePasse;
+    private boolean identifie = false;
 
 
     public Fournisseur(String nom, String adresse, String email, String telephone, String specialite,
@@ -23,11 +24,7 @@ public class Fournisseur {
         this.specialite = specialite;
         this.typeMateriel = typeMateriel;
         this.motDePasse = motDePasse;
-    }
 
-    public void proposerVente(Vente vente) {
-        ventes.add(vente);
-        System.out.println("Vente proposée par le fournisseur : " + nom);
     }
 
     public List<Vente> getVentes() {
@@ -36,12 +33,26 @@ public class Fournisseur {
 
     public void ajouterVente(Vente vente) {
         // Ajoute une vente
-        ventes.add(vente);
+        if (estIdentifie()) {
+            ventes.add(vente);
+        } else {
+            System.err.println("vous n'êtes pas connecté");
+        }
     }
 
     public boolean estIdentifie() {
-        // Vérifie l'identification du fournisseur
-        return true;
+        return identifie;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setIdentifieTrue() {
+        identifie = true;
+    }
 }

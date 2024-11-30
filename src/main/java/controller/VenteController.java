@@ -1,25 +1,28 @@
 package main.java.controller;
 
+import main.java.metier.Fournisseur;
 import main.java.metier.Vente;
 
 public class VenteController {
-    public boolean verifierIdentifiants(String id, String mdp) {
+    public boolean verifierIdentifiants(Fournisseur fournisseur, String id, String mdp) {
         // Logique pour vérifier les identifiants
-        return true;
+        return fournisseur.getAdresse().equals(id) && fournisseur.getMotDePasse().equals(mdp);
     }
 
-    public Vente creerVente() {
+    public Vente creerVente(Vente vente) {
         // Logique pour créer une vente
-        return null;
-//        return new Vente();
+        vente.valider();
+        return vente;
     }
 
-    public void validerVente() {
+    public void validerVente(Vente vente) {
         // Logique pour valider une vente
+        System.out.println("Vente valide");
+        this.creerVente(vente);
     }
 
-    public String rejeterVente() {
-        // Logique pour rejeter une vente
-        return "Vente rejetée";
+    public String rejeterVente(Vente vente) {
+        vente.refuser();
+        return "Vente rejetée, elle n'est pas complète";
     }
 }
