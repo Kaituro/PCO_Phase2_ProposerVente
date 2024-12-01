@@ -1,12 +1,12 @@
 package main.java.metier;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Fournisseur {
     private String specialite;
     private String typeMateriel;
-    private List<Vente> ventes = new ArrayList<>();
+    private List<Vente> ventes = new LinkedList<>();
     private String nom;
     private String adresse;
     private String email;

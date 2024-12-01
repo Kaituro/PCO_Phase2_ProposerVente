@@ -20,14 +20,18 @@ public class Main {
 
         // Proposer et valider la vente
         fournisseur.ajouterVente(vente);
-        if (!(fournisseur.getVentes().getLast().equals(vente))) {
+        if (fournisseur.getVentes().isEmpty() || !(fournisseur.getVentes().getLast().equals(vente))) {
             bv.demanderConnexion(fournisseur, fournisseur.getAdresse(), fournisseur.getMotDePasse());
-        } else {
             if (bv.verifierConnexion(fournisseur)) {
                 fournisseur.ajouterVente(vente);
                 System.out.println(bv.proposerVente(vente));
             }
+        } else if (bv.verifierConnexion(fournisseur)) {
+            fournisseur.ajouterVente(vente);
+            System.out.println(bv.proposerVente(vente));
+
         }
+
 
     }
 }
