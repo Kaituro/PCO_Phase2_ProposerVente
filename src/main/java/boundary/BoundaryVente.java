@@ -9,7 +9,8 @@ import java.util.List;
 
 /**
  * Classe BoundaryVente.
- * Gère l'interface entre les fournisseurs et le système pour la connexion et la gestion des ventes.
+ * Gère l'interface entre les fournisseurs et le système pour la connexion et la
+ * gestion des ventes.
  */
 public class BoundaryVente {
     private final VenteController venteController = new VenteController();
@@ -29,6 +30,9 @@ public class BoundaryVente {
      * @return Un message indiquant si la vente a été validée ou rejetée.
      */
     public String proposerVente(Vente vente) {
+        if (!connectedFournisseurs.contains(vente)) {
+            return "Erreur : Fournisseur non connecté.";
+        }
         if ("En attente".equals(vente.getStatut())) {
             venteController.validerVente(vente);
             return "Vente proposée avec succès.";

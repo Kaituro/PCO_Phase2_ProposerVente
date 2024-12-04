@@ -51,6 +51,10 @@ public class Vente {
      * Marque la vente comme validée et modifie son statut.
      */
     public void valider() {
+        if (produits.isEmpty()) {
+            System.err.println("Erreur : Impossible de valider une vente sans produits.");
+            return;
+        }
         this.statut = "Validée";
         System.out.println("Vente validée : " + nom);
     }
