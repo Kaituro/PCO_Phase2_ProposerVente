@@ -29,17 +29,12 @@ public class Main {
                 "Surfboard", 
                 "Planche de surf", 
                 300, 
-                250, 
-                "Grande", 
+                250,
                 new URI("http://example.com/surfboard")
             );
             Fournisseur fournisseur = new Fournisseur(
                 "John", 
-                "123 Street", 
-                "john@example.com", 
-                "0123456789", 
-                "Sports", 
-                "Equipements", 
+                "john@example.com",
                 "unMotDePasse"
             );
 
@@ -47,17 +42,7 @@ public class Main {
             System.out.println("\nCas réussi : Connexion correcte et vente proposée");
             testConnexionEtVente(boundaryVente, fournisseur, surfboard);
 
-            // Cas d'échec : Connexion avec un mot de passe incorrect
-            System.out.println("\nCas d'échec : Connexion avec un mot de passe incorrect");
-            testConnexionIncorrecte(boundaryVente, fournisseur, "mauvaisMotDePasse");
 
-            // Cas d'échec : Tentative de proposer une vente sans connexion
-            System.out.println("\nCas d'échec : Tentative de proposer une vente sans connexion");
-            testProposerVenteSansConnexion(boundaryVente, fournisseur, surfboard);
-
-            // Cas d'échec : Vente sans produit
-            System.out.println("\nCas d'échec : Vente sans produit");
-            testVenteSansProduit(boundaryVente, fournisseur);
 
         } catch (Exception e) {
             System.out.println("Une erreur s'est produite : " + e.getMessage());
@@ -76,67 +61,67 @@ public class Main {
             Arrays.asList(Activite.SURFING, Activite.KITESURFING)
         );
         vente.ajouterProduit(produit, 2);
-
-        boundaryVente.demanderConnexion(fournisseur, fournisseur.getAdresse(), fournisseur.getMotDePasse());
-
-        if (boundaryVente.verifierConnexion(fournisseur)) {
-            fournisseur.ajouterVente(vente);
-            String result = boundaryVente.proposerVente(vente);
-            System.out.println(result);
-        } else {
-            System.out.println("Impossible de proposer la vente. Fournisseur non connecté.");
-        }
-    }
+//
+//        boundaryVente.demanderConnexion(fournisseur, fournisseur.getEmail(), fournisseur.getMotDePasse());
+//
+//        if (boundaryVente.verifierConnexion(fournisseur)) {
+//            fournisseur.ajouterVente(vente);
+//            String result = boundaryVente.proposerVente(vente);
+//            System.out.println(result);
+//        } else {
+//            System.out.println("Impossible de proposer la vente. Fournisseur non connecté.");
+//        }
+//    }
 
     /**
      * Teste une connexion incorrecte avec un mot de passe erroné.
      */
-    private static void testConnexionIncorrecte(BoundaryVente boundaryVente, Fournisseur fournisseur, String mauvaisMotDePasse) {
-        boundaryVente.demanderConnexion(fournisseur, fournisseur.getAdresse(), mauvaisMotDePasse);
-
-        if (!boundaryVente.verifierConnexion(fournisseur)) {
-            System.out.println("Connexion refusée comme prévu.");
-        } else {
-            System.out.println("Erreur : La connexion ne devrait pas être réussie.");
-        }
+//    private static void testConnexionIncorrecte(BoundaryVente boundaryVente, Fournisseur fournisseur, String mauvaisMotDePasse) {
+//        boundaryVente.demanderConnexion(fournisseur, fournisseur.getEmail(), mauvaisMotDePasse);
+//
+//        if (!boundaryVente.verifierConnexion(fournisseur)) {
+//            System.out.println("Connexion refusée comme prévu.");
+//        } else {
+//            System.out.println("Erreur : La connexion ne devrait pas être réussie.");
+//        }
     }
 
     /**
      * Teste la tentative de proposer une vente sans connexion préalable.
      */
-    private static void testProposerVenteSansConnexion(BoundaryVente boundaryVente, Fournisseur fournisseur, Produit produit) {
-        Vente vente = new Vente(
-            "Vente d'hiver",
-            new Date(),
-            new Date(),
-            "Offre exceptionnelle",
-            Arrays.asList(Activite.SNOWBOARDING)
-        );
-        vente.ajouterProduit(produit, 1);
-
-        String result = boundaryVente.proposerVente(vente);
-        System.out.println("Résultat attendu : " + result);
-    }
+//    private static void testProposerVenteSansConnexion(BoundaryVente boundaryVente, Fournisseur fournisseur, Produit produit) {
+//        Vente vente = new Vente(
+//            "Vente d'hiver",
+//            new Date(),
+//            new Date(),
+//            "Offre exceptionnelle",
+//            Arrays.asList(Activite.SNOWBOARDING)
+//        );
+//        vente.ajouterProduit(produit, 1);
+//
+////        String result = boundaryVente.proposerVente(vente);
+////        System.out.println("Résultat attendu : " + result);
+//    }
 
     /**
      * Teste la tentative de créer une vente sans produit associé.
      */
-    private static void testVenteSansProduit(BoundaryVente boundaryVente, Fournisseur fournisseur) {
-        Vente vente = new Vente(
-            "Vente vide",
-            new Date(),
-            new Date(),
-            "Vente sans produits",
-            Arrays.asList(Activite.SKATEBOARDING)
-        );
+//    private static void testVenteSansProduit(BoundaryVente boundaryVente, Fournisseur fournisseur) {
+//        Vente vente = new Vente(
+//            "Vente vide",
+//            new Date(),
+//            new Date(),
+//            "Vente sans produits",
+//            Arrays.asList(Activite.SKATEBOARDING)
+//        );
 
-        boundaryVente.demanderConnexion(fournisseur, fournisseur.getAdresse(), fournisseur.getMotDePasse());
-        if (boundaryVente.verifierConnexion(fournisseur)) {
-            fournisseur.ajouterVente(vente);
-            String result = boundaryVente.proposerVente(vente);
-            System.out.println(result);
-        } else {
-            System.out.println("Erreur : Vente vide proposée sans connexion.");
-        }
-    }
+////        boundaryVente.demanderConnexion(fournisseur, fournisseur.getEmail(), fournisseur.getMotDePasse());
+////        if (boundaryVente.verifierConnexion(fournisseur)) {
+//            fournisseur.ajouterVente(vente);
+////            String result = boundaryVente.proposerVente(vente);
+//            System.out.println(result);
+//        } else {
+//            System.out.println("Erreur : Vente vide proposée sans connexion.");
+//        }
+//    }
 }

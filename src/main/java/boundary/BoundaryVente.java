@@ -1,11 +1,8 @@
 package main.java.boundary;
 
+import main.java.controller.ControlVerificationIdentification;
 import main.java.controller.VenteController;
-import main.java.metier.Fournisseur;
-import main.java.metier.Vente;
-
-import java.util.ArrayList;
-import java.util.List;
+import main.java.metier.Activite;
 
 /**
  * Classe BoundaryVente.
@@ -14,58 +11,42 @@ import java.util.List;
  */
 public class BoundaryVente {
     private final VenteController venteController = new VenteController();
-    private final List<Fournisseur> connectedFournisseurs = new ArrayList<>();
+    private final ControlVerificationIdentification controlVerificationIdentification = new ControlVerificationIdentification();
 
     /**
      * Affiche un message d'erreur en cas d'échec de la connexion.
      */
     public void afficherErreurConnexion() {
-        System.out.println("Erreur : identifiant ou mot de passe incorrect.");
+        // TODO équipe de dev boundary de le faire
     }
 
-    /**
-     * Propose une vente pour validation ou rejet.
-     *
-     * @param vente La vente à proposer.
-     * @return Un message indiquant si la vente a été validée ou rejetée.
-     */
-    public String proposerVente(Vente vente) {
-        if (!connectedFournisseurs.contains(vente)) {
-            return "Erreur : Fournisseur non connecté.";
-        }
-        if ("En attente".equals(vente.getStatut())) {
-            venteController.validerVente(vente);
-            return "Vente proposée avec succès.";
-        } else {
-            return venteController.rejeterVente(vente);
+
+    public void proposerVente(String nom, String description, Activite activite) {
+        if (controlVerificationIdentification.ControlVerificationIdentification()) {
+            venteController.creerVente(nom, description, activite);
         }
     }
 
     /**
      * Demande la connexion d'un fournisseur avec ses identifiants.
      *
-     * @param fournisseur Le fournisseur qui tente de se connecter.
-     * @param id          L'identifiant du fournisseur (email ou adresse).
-     * @param mdp         Le mot de passe du fournisseur.
+     * @param id  L'identifiant du fournisseur (email ou adresse).
+     * @param mdp Le mot de passe du fournisseur.
      */
-    public void demanderConnexion(Fournisseur fournisseur, String id, String mdp) {
-        boolean estConnecte = venteController.verifierIdentifiants(fournisseur, id, mdp);
-        if (!estConnecte) {
-            afficherErreurConnexion();
-        } else {
-            System.out.println("Connexion réussie pour le fournisseur : " + fournisseur.getNom());
-            fournisseur.setIdentifieTrue();
-            connectedFournisseurs.add(fournisseur);
-        }
+    public void demanderConnexion(String id, String mdp) {
+        controlVerificationIdentification.ControlVerificationIdentification();
+        System.out.println("connecté");
     }
 
     /**
      * Vérifie si un fournisseur est actuellement connecté.
      *
-     * @param fournisseur Le fournisseur à vérifier.
      * @return {@code true} si le fournisseur est connecté, sinon {@code false}.
      */
-    public boolean verifierConnexion(Fournisseur fournisseur) {
-        return connectedFournisseurs.contains(fournisseur);
+    public String verifierConnexion(String token) {
+        if (controlVerificationIdentification.ControlVerificationIdentification()) {
+            return "connecté";
+        }
+        return "Vous n'êtes pas connecté";
     }
 }

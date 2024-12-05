@@ -8,37 +8,22 @@ import java.util.List;
  * Représente un fournisseur, ses informations personnelles et professionnelles,
  * ainsi que ses ventes.
  */
-public class Fournisseur {
-    private String specialite;
-    private String typeMateriel;
+public class Fournisseur extends Utilisateur{
     private List<Vente> ventes = new LinkedList<>();
     private String nom;
-    private String adresse;
-    private String email;
-    private String telephone;
-    private String motDePasse;
-    private boolean identifie = false;
+
 
     /**
      * Constructeur de la classe Fournisseur.
      *
      * @param nom          Le nom du fournisseur.
-     * @param adresse      L'adresse du fournisseur.
      * @param email        L'email du fournisseur.
-     * @param telephone    Le numéro de téléphone du fournisseur.
-     * @param specialite   La spécialité du fournisseur.
-     * @param typeMateriel Le type de matériel fourni.
      * @param motDePasse   Le mot de passe pour l'authentification.
      */
-    public Fournisseur(String nom, String adresse, String email, String telephone, String specialite,
-            String typeMateriel, String motDePasse) {
+    public Fournisseur(String nom, String email, String motDePasse) {
+        super(email, motDePasse);
         this.nom = nom;
-        this.adresse = adresse;
-        this.email = email;
-        this.telephone = telephone;
-        this.specialite = specialite;
-        this.typeMateriel = typeMateriel;
-        this.motDePasse = motDePasse;
+
     }
 
     /**
@@ -55,8 +40,8 @@ public class Fournisseur {
      *
      * @return L'adresse du fournisseur.
      */
-    public String getAdresse() {
-        return adresse;
+    public String getEmail() {
+        return super.getEmail();
     }
 
     /**
@@ -65,7 +50,7 @@ public class Fournisseur {
      * @return Le mot de passe du fournisseur.
      */
     public String getMotDePasse() {
-        return motDePasse;
+        return super.getMdp();
     }
 
     /**
@@ -83,14 +68,14 @@ public class Fournisseur {
      * @return {@code true} si le fournisseur est identifié, sinon {@code false}.
      */
     public boolean estIdentifie() {
-        return identifie;
+      return super.estIdentifie();
     }
 
     /**
      * Définit le fournisseur comme identifié (connecté).
      */
     public void setIdentifieTrue() {
-        identifie = true;
+        super.setIdentifie();
     }
 
     /**
@@ -100,11 +85,6 @@ public class Fournisseur {
      * @param vente La vente à ajouter.
      */
     public void ajouterVente(Vente vente) {
-        if (estIdentifie()) {
-            ventes.add(vente);
-            System.out.println("Vente ajoutée avec succès : " + vente.getNom());
-        } else {
-            System.err.println("Erreur : vous devez être connecté pour ajouter une vente.");
-        }
+      
     }
 }
