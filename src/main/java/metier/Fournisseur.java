@@ -8,7 +8,7 @@ import java.util.List;
  * Représente un fournisseur, ses informations personnelles et professionnelles,
  * ainsi que ses ventes.
  */
-public class Fournisseur extends Utilisateur{
+public class Fournisseur extends Utilisateur {
     private List<Vente> ventes = new LinkedList<>();
     private String nom;
 
@@ -16,9 +16,9 @@ public class Fournisseur extends Utilisateur{
     /**
      * Constructeur de la classe Fournisseur.
      *
-     * @param nom          Le nom du fournisseur.
-     * @param email        L'email du fournisseur.
-     * @param motDePasse   Le mot de passe pour l'authentification.
+     * @param nom        Le nom du fournisseur.
+     * @param email      L'email du fournisseur.
+     * @param motDePasse Le mot de passe pour l'authentification.
      */
     public Fournisseur(String nom, String email, String motDePasse) {
         super(email, motDePasse);
@@ -68,7 +68,7 @@ public class Fournisseur extends Utilisateur{
      * @return {@code true} si le fournisseur est identifié, sinon {@code false}.
      */
     public boolean estIdentifie() {
-      return super.estIdentifie();
+        return super.estIdentifie();
     }
 
     /**
@@ -85,6 +85,6 @@ public class Fournisseur extends Utilisateur{
      * @param vente La vente à ajouter.
      */
     public void ajouterVente(Vente vente) {
-      
+
     }
 }
