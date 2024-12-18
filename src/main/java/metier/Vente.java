@@ -6,91 +6,80 @@ import java.util.List;
 
 /**
  * Classe Vente.
- * Représente une vente avec ses détails, les produits associés,
- * et son statut (en attente, validée ou refusée).
+ * Représente une vente effectuée par un fournisseur, contenant plusieurs
+ * produits.
  */
 public class Vente {
+
+    /**
+     * Le nom de la vente.
+     */
     private String nom;
+
+    /**
+     * La date de début de la vente.
+     */
     private Date dateDebut;
+
+    /**
+     * La date de fin de la vente.
+     */
     private Date dateFin;
-    private String description;
-    private List<Activite> activites;
-    private List<LigneDeVente> produits = new ArrayList<>();
-    private String statut;
+
+    /**
+     * La liste des produits inclus dans cette vente.
+     */
+    private List<ProduitVente> produits = new ArrayList<>();
 
     /**
      * Constructeur de la classe Vente.
      *
-     * @param nom         Le nom de la vente.
-     * @param dateDebut   La date de début de la vente.
-     * @param dateFin     La date de fin de la vente.
-     * @param description La description de la vente.
-     * @param activites   La liste des activités associées à la vente.
+     * @param nom       Le nom de la vente.
+     * @param dateDebut La date de début de la vente.
+     * @param dateFin   La date de fin de la vente.
      */
-    public Vente(String nom, Date dateDebut, Date dateFin, String description, List<Activite> activites) {
+    public Vente(String nom, Date dateDebut, Date dateFin) {
         this.nom = nom;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.description = description;
-        this.activites = activites;
-        this.statut = "En attente";
     }
 
     /**
-     * Ajoute un produit à la liste des produits associés à cette vente.
+     * Ajoute un produit à cette vente.
      *
      * @param produit  Le produit à ajouter.
      * @param quantite La quantité de ce produit.
      */
     public void ajouterProduit(Produit produit, int quantite) {
-        produits.add(new LigneDeVente(produit, quantite));
-        System.out.println("Produit ajouté : " + produit.getNom());
+        produits.add(new ProduitVente(produit, quantite));
     }
 
     /**
-     * Marque la vente comme validée et modifie son statut.
-     */
-    public void valider() {
-        if (produits.isEmpty()) {
-            System.err.println("Erreur : Impossible de valider une vente sans produits.");
-            return;
-        }
-        this.statut = "Validée";
-        System.out.println("Vente validée : " + nom);
-    }
-
-    /**
-     * Marque la vente comme refusée et modifie son statut.
-     */
-    public void refuser() {
-        this.statut = "Refusée";
-        System.out.println("Vente refusée : " + nom);
-    }
-
-    /**
-     * Récupère le nom de la vente.
+     * Récupère la liste des produits inclus dans cette vente.
      *
-     * @return Le nom de la vente.
+     * @return Une liste de {@link ProduitVente}.
      */
-    public String getNom() {
-        return nom;
-    }
-
-    /**
-     * Récupère le statut de la vente.
-     *
-     * @return Le statut de la vente (En attente, Validée, Refusée).
-     */
-    public String getStatut() {
-        return statut;
-    }
-
-    /**
-     * Récupère la liste des produits associés à cette vente.
-     *
-     * @return Une liste des lignes de vente.
-     */
-    public List<LigneDeVente> getProduits() {
+    public List<ProduitVente> getProduits() {
         return produits;
+    }
+
+    /**
+     * Redéfinition de la méthode toString pour afficher les détails de la vente.
+     *
+     * @return Une chaîne contenant le nom, les dates et les produits de la vente.
+     */
+    @Override
+    public String toString() {
+        StringBuilder details = new StringBuilder();
+        details.append("Vente: ").append(nom)
+                .append("\nDate début: ").append(dateDebut)
+                .append("\nDate fin: ").append(dateFin)
+                .append("\nProduits: \n");
+
+        for (ProduitVente pv : produits) {
+            details.append(" - ").append(pv).append("\n");
+        }
+
+        return details.toString();
     }
 }
